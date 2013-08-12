@@ -115,14 +115,17 @@
 							var request = {
 									origin: config.rota.valor,
 									destination: location,
-									travelMode: google.maps.DirectionsTravelMode.DRIVING
+									travelMode: google.maps.DirectionsTravelMode.WALKING
 							};
 							
 							directionsService.route(request, function(response, status) {
 									if (status == google.maps.DirectionsStatus.OK) {
 										directionsDisplay.setDirections(response);
 										directionsDisplay.setMap(map);
-							config.rota.onComplete(response);
+										if (config.rota.onComplete != undefined){
+											config.rota.onComplete(response);
+
+										}
 									}
 							});
 
